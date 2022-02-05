@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block title %}Спасибо {{ poll.pk }}{% endblock %}
+{% block nav %}
+
+{% endblock %}
+{% block content %}
+    <h1 class="text-center">Спасибо за ваш ответ!</h1>
+    <a class="navbar-brand text-center" href="{% url 'poll_index' %}">Вернуться на главную страницу</a>
+{% endblock %}

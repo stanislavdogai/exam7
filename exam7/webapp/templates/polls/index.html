@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block tittle %}Опрос{% endblock %}
+{% block nav %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'poll_create' %}">Создать опрос</a>
+    </li>
+{% endblock %}
+
+{% block content %}
+    <div class="mt-3 mb-3">
+    {% include 'partial/search.html' %}
+    </div>
+    {% if is_paginated %}
+        {% include 'partial/pagination.html' %}
+    {% endif %}
+    {% if polls %}
+    {% for poll in polls %}
+        <div class="card text-white bg-secondary mb-3" style="max-width: 40rem;">
+            <div class="card-header"><a href="{% url 'poll_detail' poll.pk %}" class="text-white">Опрос №{{ poll.pk }} </a></div>
+            <div class="card-body">
+                <p>{{ poll.question }}</p>
+            <a href="{% url 'poll_delete' poll.pk %}" class="text-white">Удалить опрос</a><br>
+            <a href="{% url 'poll_update' poll.pk %}" class="text-white">Редактировать опрос</a><br>
+                <a href="{% url 'poll_answer' poll.pk %}" class="text-white">Пройти опрос</a>
+            </div>
+        </div>
+    {% endfor %}
+        {% else %}
+        <h1>Опросов нет</h1>
+    {% endif %}
+    {% if is_paginated %}
+        {% include 'partial/pagination.html' %}
+    {% endif %}
+{% endblock %}

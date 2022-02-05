@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block tittle %}Изменить вариант ответа{% endblock %}
+
+{% block content %}
+<h1>Изменение варианта ответа</h1>
+    <form method="POST" class="mb-5">
+    {% include 'partial/form.html' with button_text='Изменить' %}
+    </form>
+{% endblock %}

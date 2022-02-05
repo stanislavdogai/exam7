@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Опрос №{{ poll.pk }}{% endblock %}
+{% block nav %}
+    <li class="nav-item">
+        <a class="nav-link" href="">кнопка</a>
+    </li>
+{% endblock %}
+{% block content %}
+
+<h1>{{ poll.question }}</h1>
+
+
+<form method="POST">
+{% csrf_token %}
+<select class="form-select form-select-lg mb-3" aria-label=".form-select-lg" name="choice">
+<option selected>Выберите вариант ответа</option>
+    {% for choice in poll.choices.all %}
+    <option  value='{{ choice.pk }}'>{{ choice }}</option>
+    {% endfor %}
+</select>
+<input type="submit" value='Отправить'/>
+</form>
+{% endblock %}
